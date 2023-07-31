@@ -1,22 +1,41 @@
 function hasTargetSum(array, target) {
-  // Write your algorithm here
+  // Pseudocode:
+  // 1. Create an empty set to store the numbers encountered while iterating through the array.
+  // 2. For each number in the array:
+  //    - Calculate the complement (target minus the current number).
+  //    - If the complement is present in the set, return true, as it means there is a pair that adds up to the target.
+  //    - Otherwise, add the current number to the set and continue to the next number.
+  // 3. If no pair is found after iterating through the entire array, return false.
+
+  const numbersSet = new Set();
+
+  for (const num of array) {
+    const complement = target - num;
+
+    if (numbersSet.has(complement)) {
+      return true;
+    }
+
+    numbersSet.add(num);
+  }
+
+  return false;
 }
 
 /* 
-  Write the Big O time complexity of your function here
-*/
+  Big O time complexity: O(n)
+    - The function iterates through the array once, and for each element, it performs constant-time operations (adding or checking set).
+    - The time complexity is linear with respect to the size of the input array.
 
-/* 
-  Add your pseudocode here
-*/
+  Written Explanation of Solution:
+  The function uses a set to store the numbers encountered while iterating through the array. For each number in the array, it calculates the complement (target minus the current number). If the complement is already present in the set, it means there is a pair that adds up to the target, and the function returns true. Otherwise, it adds the current number to the set and continues to the next number. If no pair is found after iterating through the entire array, the function returns false.
 
-/*
-  Add written explanation of your solution here
+  The function works with an array of integers and a target integer. It returns true if any pair of numbers in the array adds up to the target number, and false otherwise.
 */
 
 // You can run `node index.js` to view these console logs
 if (require.main === module) {
-  // add your own custom tests in here
+  // add your own custom tests here
   console.log("Expecting: true");
   console.log("=>", hasTargetSum([3, 8, 12, 4, 11, 7], 10));
 
